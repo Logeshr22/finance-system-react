@@ -1,0 +1,65 @@
+
+#loginTitle{
+    border-bottom: 0;
+    color :white;
+    font-size : 1.5em;
+    font-weight: 500;
+}
+#dialogue{
+    color : #6f2dbd;
+    font-size : 1.8em;
+    font-weight: 400;
+    font-family : Montserrat;
+    margin-top : 1em;
+    opacity: 0;
+}
+.formContainer{
+    width: 500px;
+    margin : 2em auto 0 auto;
+    border-radius : 20px;
+    background-color: #6f2dbd;
+    box-shadow: 15px 20px 50px grey;
+    padding : 30px;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    padding : 0 0 20px 0;
+
+}
+.form .inputField{
+    border : 2px solid white;
+    color :#6f2dbd;
+    background-color:white;
+    font-size : 1em;
+    margin-bottom : 15px;
+    width: 200px;
+    padding : 10px 10px 10px 10px;
+    border-radius: 10px;
+}
+::placeholder{
+    color : #6f2dbd;
+}
+.form .submitButton{
+    font-size : 16px;
+    font-family : Montserrat,Menlo;
+    padding : 10px 14px 10px 14px;
+    background-color :white;
+    color :#6f2dbd;
+    border : 2px solid white;
+    border-radius : 8px;
+    display: flex;
+    margin : 10px auto;
+    justify-content: center;
+    
+}
+.form .link{
+    color :white;
+    font-family : Montserrat,Menlo;
+    font-size : 1.2em;
+    text-decoration: none;
+    font-weight: 500;
+    display : flex;
+    margin : 10px auto;
+    justify-content: center;
+}

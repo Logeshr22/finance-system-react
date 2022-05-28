@@ -1,0 +1,28 @@
+
+#l1{
+    font-weight: 400;
+}
+#l2{
+    font-weight: bold;
+}
+
+/* navbar text */
+nav{
+    font-family : Montserrat,Menlo;
+    color:white;
+    background-color:#6f2dbd;
+    font-size : 20px;
+    margin : 10px 20px 10px 20px;
+    list-style: none;
+    padding : 10px 0 10px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.text-link{
+    text-decoration: none;
+    color : inherit;
+    font-weight: 500;
+    /* font-size : 17px; */
+}

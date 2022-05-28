@@ -1,0 +1,102 @@
+.body{
+    background-color:white;
+}
+/* logo text */
+#l1{
+    font-weight: 400;
+}
+#l2{
+    font-weight: bold;
+}
+.title{
+    margin-top : 70px;
+}
+.header{
+    /* border-bottom : 2px solid white;  */
+    font-family:Montserrat;
+    color:#6f2dbd;
+    text-align: center;
+    letter-spacing: 4px;
+    margin-bottom : 30px;
+    margin-top : 30px;
+}
+/* navbar text */
+.navbar{
+    font-family : Montserrat,Menlo;
+    color:white;
+    background-color:#6f2dbd;
+    font-size : 1.4em;
+    display : flex;
+    justify-content: space-around;
+    list-style: none;
+    padding : 10px 0 10px 0;
+    border-bottom: 2px solid white;
+    border-right : 2px solid white;
+    border-left : 2px solid white;
+    border-radius: 10px;
+}
+.navbar .link,li{
+    text-decoration: none;
+    color : inherit;
+    font-weight: 500;
+    font-size : 17px;
+}
+#loginTitle{
+    border-bottom: 0;
+    color :white;
+    font-size : 1.5em;
+    font-weight: 500;
+}
+
+.formContainer{
+    width: 500px;
+    margin : 0 auto 0 auto;
+    border : 2px solid none;
+    border-radius : 20px;
+    background-color: #6f2dbd;
+    box-shadow: 15px 20px 50px grey;
+    padding : 30px;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    padding : 0 0 20px 0;
+
+}
+.form .inputField{
+    border : 2px solid white;
+    color :#6f2dbd;
+    background-color: white;
+    font-size : 1em;
+    margin-bottom : 15px;
+    padding : 10px 10px 10px 10px;
+    border-radius: 10px;
+}
+::placeholder{
+    color : #6f2dbd;
+}
+.form .submitButton{
+    font-size : 16px;
+    font-family : Montserrat,Menlo;
+    padding : 10px 14px 10px 14px;
+    background-color : #6f2dbd;
+    color : white;
+    background-color: #6f2dbd;
+    border : 2px solid white;
+    border-radius : 8px;
+    display: flex;
+    margin : 10px auto;
+    justify-content: center;
+    
+}
+.form .link{
+    color :white;
+    font-family : Montserrat,Menlo;
+    font-size : 1.2em;
+    text-decoration: none;
+    font-weight: 500;
+    display : flex;
+    margin : 10px auto;
+    justify-content: center;
+}
+

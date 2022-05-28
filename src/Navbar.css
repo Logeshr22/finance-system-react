@@ -1,0 +1,21 @@
+h1{
+    font-family : Montserrat;
+}
+.Navbar{
+    font-family : Montserrat;
+}
+li{
+    list-style-type: none;
+}
+.text-link{
+    text-decoration: inherit;
+    color : inherit;
+}
+#l1{
+    font-size : 30px;
+    font-weight: 350;
+}
+#l2{
+    font-size : 30px;
+    font-weight: 550;
+}
