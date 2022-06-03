@@ -17,3 +17,5 @@ app.use("/",require("./routes/noteRoute"));
 app.listen(3001,function(){
     console.log("express server is running on port 3001");
 })
+
+

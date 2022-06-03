@@ -5,12 +5,20 @@
     font-size : 1.5em;
     font-weight: 500;
 }
+#dialogue{
+    color : #6f2dbd;
+    font-size : 1.8em;
+    font-weight: 400;
+    font-family : Montserrat;
+    margin-top : 1em;
+    opacity: 0;
+}
 .formContainer{
     width: 500px;
-    margin : 5em auto 0 auto;
+    margin : 2em auto 0 auto;
     border-radius : 20px;
     background-color: #6f2dbd;
-    box-shadow: 15px 20px 50px grey;
+    /* box-shadow: 15px 20px 50px grey; */
     padding : 30px;
 }
 .form{

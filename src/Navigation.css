@@ -5,7 +5,6 @@
 #l2{
     font-weight: bold;
 }
-
 /* navbar text */
 nav{
     font-family : Montserrat,Menlo;
@@ -18,6 +17,9 @@ nav{
     border-radius: 10px;
     display: flex;
     justify-content: space-evenly;
+    position: sticky;
+    top : 10px;
+    
 }
 
 .text-link{

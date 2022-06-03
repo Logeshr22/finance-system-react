@@ -5,11 +5,15 @@ import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
 import "./Navigation.css";
+import {Helmet} from "react-helmet";
 // import Navbar from "./Navbar";
 function App() {
   return (
     <div className="App">
       {/* <Navbar/> */}
+      <Helmet>
+        <style>{"body { background-color: black; }"}</style>
+      </Helmet>
       <Router>
           <nav>
               <span><span id="l1">MONEY </span><span id="l2">MATTERS</span></span>
