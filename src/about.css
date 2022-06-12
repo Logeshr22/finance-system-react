@@ -1,5 +1,4 @@
 .aboutText{
-    color : white;
     font-family : Montserrat;
     font-size : 30px;
     line-height: 50px;
@@ -7,21 +6,29 @@
 }
 .About{
     font-family : Montserrat;
+    color: white;
+    display : flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("./images/bg1.jpg");
+    background-size: cover;
 }
 .container{
     border : 2px solid white;
-    margin : 50px 50px 0px 50px;
+    margin : 150px 50px auto 50px;
     padding : 30px 50px 30px 50px;
+    background-color: #5a189a;
     font-family:Montserrat;
+    border-radius: .5em;
+
 }
 .largeText{
     font-size:4em;
     font-weight: 700;
-    color : white;
 }
 .byText{
     font-size : 20px;
-    color : white;
     display : flex;
     flex-direction : row-reverse;
     padding : 80px 120px 0px 120px;
@@ -29,6 +36,6 @@
     font-weight: 400;
 }
 .footer{
-    padding : 80px 30px 80px 30px;
-    color : white;
+    bottom : 0;
+    margin-bottom: 0;
 }

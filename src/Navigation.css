@@ -9,19 +9,17 @@
 nav{
     font-family : Montserrat,Menlo;
     color:white;
-    background-color:#6f2dbd;
+    /* background-color:#6f2dbd; */
+    background-color: black;
     font-size : 20px;
-    margin : 10px 20px 10px 20px;
     list-style: none;
     padding : 10px 0 10px 0;
-    border-radius: 10px;
     display: flex;
     justify-content: space-evenly;
     position: sticky;
-    top : 10px;
-    
+    top:0;
+    /* border-top : 20px solid black; */
 }
-
 .text-link{
     text-decoration: none;
     color : inherit;

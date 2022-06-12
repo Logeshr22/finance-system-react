@@ -6,17 +6,19 @@ import Register from "./Register";
 import About from "./About";
 import "./Navigation.css";
 import {Helmet} from "react-helmet";
-// import Navbar from "./Navbar";
+import Background from "./beach.jpg"
 function App() {
+  var sectionStyle = {
+    backgroundImage: "url(" + { Background } + ")"
+  };
   return (
-    <div className="App">
-      {/* <Navbar/> */}
+    <div className="App" style={sectionStyle}>
       <Helmet>
-        <style>{"body { background-color: black; }"}</style>
+        <style>{"body { background-color : white; }"}</style>
       </Helmet>
       <Router>
           <nav>
-              <span><span id="l1">MONEY </span><span id="l2">MATTERS</span></span>
+              <span><span id="l1">KRISHNA </span><span id="l2">FINANCE</span></span>
               <Link to="./" className="text-link">HOME</Link>
               <Link to="./Login" className="text-link">LOGIN</Link>
               <Link to="./Register" className="text-link">REGISTER</Link>

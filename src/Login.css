@@ -1,9 +1,23 @@
-
+.Login{
+    background-image: url("./images/bg1.jpg");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    font-family: Montserrat;
+}
+.Register{
+    background-image: url("./images/bg1.jpg");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    font-family: Montserrat;
+}
 #loginTitle{
     border-bottom: 0;
     color :white;
     font-size : 1.5em;
     font-weight: 500;
+    padding-right: 50px;
 }
 #dialogue{
     color : #6f2dbd;
@@ -14,43 +28,85 @@
     opacity: 0;
 }
 .formContainer{
-    width: 500px;
-    margin : 2em auto 0 auto;
-    border-radius : 20px;
-    background-color: #6f2dbd;
-    /* box-shadow: 15px 20px 50px grey; */
-    padding : 30px;
-}
-.form{
     display: flex;
-    justify-content: center;
-    padding : 0 0 20px 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 500px;
+    border-radius : 10px;
+    background-color: #6f2dbd;
+    padding : 50px;
+    margin : 150px auto auto auto;
+    border : 3px solid black;
 
 }
+
+#loginTitle.header{
+    display: flex;
+    justify-content: space-evenly;
+    height: 200px;
+    flex-direction: column;
+}
+#form{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction : column;
+    margin-right: 25px;
+}
 .form .inputField{
-    border : 2px solid white;
-    color :#6f2dbd;
-    background-color: white;
+    border :3px solid white;
+    /* color :#6f2dbd; */
+    color : black;
+    background-color:white;
     font-size : 1em;
     margin-bottom : 15px;
-    padding : 10px 10px 10px 10px;
-    border-radius: 10px;
+    width: 200px;
+    padding : 15px 15px 15px 15px;
+    border-radius : 10px;
+    transition:0.1s ease-in-out;
+    font-family : montserrat;
+    outline:none;
+
+}
+
+.inputField:hover,.inputField:focus,.inputField:active{
+    /* transform:scale(1.08);
+    transition:0.1s ease-in-out; */
+    border : 3px solid black;
 }
 ::placeholder{
-    color : #6f2dbd;
+    /* color : #6f2dbd; */
+    color : rgba(83, 82, 82, 0.979);
+}
+.errorMessage{
+    color : white;
+    margin : 0px 0px 15px 0px;
+
 }
 .form .submitButton{
     font-size : 16px;
     font-family : Montserrat,Menlo;
     padding : 10px 14px 10px 14px;
     background-color :white;
-    color :#6f2dbd;
+    /* color :#6f2dbd; */
+    color : black;
     border : 2px solid white;
     border-radius : 8px;
     display: flex;
-    margin : 10px auto;
+    margin : 15px auto;
     justify-content: center;
+    font-weight: bold;
+    transition:0.1s ease-in-out;
+    border : 3px solid black;
+    outline : none;
     
+}
+.form .submitButton:active{
+    background-color: black;
+    color : white;
+}
+.form .submitButton:hover,.form .submitButton:active{
+    transform:scale(1.10);
+    transition:0.1s ease-in-out;
 }
 .form .link{
     color :white;

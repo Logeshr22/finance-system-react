@@ -1,7 +1,7 @@
-
+/* 
 #loginTitle{
     border-bottom: 0;
-    color :white;
+    color :#6f2dbd;
     font-size : 1.5em;
     font-weight: 500;
 }
@@ -16,10 +16,9 @@
 .formContainer{
     width: 500px;
     margin : 2em auto 0 auto;
-    background-color: #6f2dbd;
-    border : 3px solid white;   
-    /* box-shadow: 15px 20px 50px grey; */
+    background-color: white;
     padding : 30px;
+    border-radius: 5px;
 }
 .form{
     display: flex;
@@ -28,14 +27,14 @@
 
 }
 .form .inputField{
-    border : 2px solid white;
+    border :2px solid #c092f3;
     color :#6f2dbd;
     background-color:white;
     font-size : 1em;
     margin-bottom : 15px;
     width: 200px;
     padding : 10px 10px 10px 10px;
-    /* border-radius: 10px; */
+    border-radius : 5px;
 }
 ::placeholder{
     color : #6f2dbd;
@@ -44,17 +43,23 @@
     font-size : 16px;
     font-family : Montserrat,Menlo;
     padding : 10px 14px 10px 14px;
-    background-color :white;
-    color :#6f2dbd;
+    background-color :#6f2dbd;
+    color :white;
     border : 2px solid white;
     border-radius : 8px;
     display: flex;
     margin : 10px auto;
     justify-content: center;
-    
+    font-weight: bold;
+}
+.inputField:hover{
+    border : 2px solid #6f2dbd;
+}
+.submitButton:hover{
+
 }
 .form .link{
-    color :white;
+    color :#6f2dbd;
     font-family : Montserrat,Menlo;
     font-size : 1.2em;
     text-decoration: none;
@@ -62,4 +67,4 @@
     display : flex;
     margin : 10px auto;
     justify-content: center;
-}
+} */

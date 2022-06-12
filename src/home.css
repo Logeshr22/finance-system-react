@@ -1,8 +1,33 @@
 .Home{
     color : white;
     font-family : Montserrat;
-
+    /* display:flex; */
 }
+table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+table,tr,td{
+    border:none;
+}
+td{
+    padding : 100px 0px 100px 0px;
+}
+.part2{
+    /* background-color: #e0aaff; */
+    background-color: #5a189a;
+}
+.div1part1{
+    color : white;
+    background-image:url("./bg1.jpg");
+    background-size:cover;
+}
+.div1part2{
+    background-color: #9d4edd;
+    /* background-color: #d62828; */
+}
+
 /* logo text */
 #l1{
     font-weight: 400;
@@ -15,33 +40,35 @@
 }
 .images{
     display : flex;
+    justify-content: space-between;
+    /* margin-top : 4em; */
 }
 .img{
     display : flex;
-    flex-direction: column;
     margin: 0 auto;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    border : 2px solid white;
-    padding : 30px 30px 30px 30px;
     transition:0.2s ease-in-out;
-    /* justify-content: space-around; */
+    /* background-color: #6f2dbd; */
+    background-color: #9d4edd;
+    padding : 20px 20px 20px 20px;
+    height: 200px;
+    width: 350px;
 }
 .img:hover{
-    transform:scale(1.15);
+    transform:scale(1.05);
     transition:0.2s ease-in-out;
 }
 .imageText{
-    padding-top : 20px;
+    /* padding-top : 20px; */
     font-size : 20px;
+    font-weight:500;
 }
-img{
-    border : 2px solid white;
-    border-radius: 30px;
-    
+img,.img{
+    border-radius: .5em;
 }
 .pText{
-    font-size : 30px;
+    font-size : 20px;
     padding : 0px 50px 0px 50px;
     line-height: 50px;
 }
@@ -81,15 +108,21 @@ img{
 #heading{
     font-size : 2em;
 }
-.largeText{
-    font-size:4em;
+p.largeText{
+    font-size : 2em;
     font-weight: 700;
+    margin-bottom : 60px;
+}
+.part2{
+    padding : 40px 0px 80px 0px;
 }
 .highlight{
     font-weight: bold;
     color :#6f2dbd;
 }
-.footer{
-    padding : 80px 30px 80px 30px;
-
+div.footer{
+    padding : 15px 30px 15px 30px;
+    bottom: 0px;
+    color : white;
+    background-color: black;
 }

@@ -13,7 +13,7 @@ function About(){
         <div className="byText">Sincerely,
         Krishna Finance.</div>
         </div>
-        <div className="footer"><span id="l1">MONEY </span><span id="l2">MATTERS</span> &#169; All Rights Reserved.</div>
+        {/* <footer className="footer"><span id="l1">MONEY </span><span id="l2">MATTERS</span> &#169; All Rights Reserved.</footer> */}
         </div>
     )
 }
