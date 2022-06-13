@@ -15,10 +15,10 @@
     background-size: cover;
 }
 .container{
-    border : 2px solid white;
+    border : 3px solid black;
     margin : 150px 50px auto 50px;
     padding : 30px 50px 30px 50px;
-    background-color: #5a189a;
+    background-color: #6f2dbd;
     font-family:Montserrat;
     border-radius: .5em;
 
