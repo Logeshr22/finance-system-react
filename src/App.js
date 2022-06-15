@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
+// import CustomerDashboard from "./CustomerDashboard";
 import "./Navigation.css";
 import {Helmet} from "react-helmet";
 import Background from "./beach.jpg"
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/Login" element={<Login/>}/>
           <Route exact path="/Register" element={<Register/>}/>
           <Route exact path="/About" element={<About/>}/>
+          {/* <Route exact path="/CustomerDashboard" element={<CustomerDashboard/>}/> */}
         </Routes>
       </Router>
     </div>
