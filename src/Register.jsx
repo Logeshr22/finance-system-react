@@ -1,6 +1,6 @@
 import "./Login.css";
 import {useState,useEffect} from "react";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 function Register(){
     //Form Validation
     // const initialValues = {name : "",email : "",password : ""};
@@ -44,6 +44,7 @@ function Register(){
     // },[formErrors]);
     
     //Authentication 
+    const navigate = useNavigate();
     const [name,setName ] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -72,6 +73,11 @@ function Register(){
         })
         const data = await response.json();
         console.log(data);
+        
+        if(data.status==="ok"){
+            navigate("/Login");
+        }
+
     }
 
     // const twoCallsName = e => {
