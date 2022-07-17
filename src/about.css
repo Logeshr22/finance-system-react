@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400;1,500&display=swap');
 .aboutText{
     font-family : Montserrat;
     font-size : 30px;
+    line-height: 50px;
+    padding : 0px 60px 0px 60px;
+}
+.loanText{
+    font-family : Montserrat;
+    font-size : 1.8em;
     line-height: 50px;
     padding : 0px 60px 0px 60px;
 }
@@ -14,6 +21,16 @@
     background-image: url("./images/bg1.jpg");
     background-size: cover;
 }
+.CustomerDashboard{
+    font-family : Montserrat;
+    color: white;
+    display : flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("./images/bg1.jpg");
+    background-size: cover;
+}
 .container{
     border : 3px solid black;
     margin : 150px 50px auto 50px;
@@ -21,12 +38,27 @@
     background-color: #6f2dbd;
     font-family:Montserrat;
     border-radius: .5em;
-
+}
+.loanContainer{
+    border : 3px solid black;
+    margin : auto 30em auto 30em;
+    padding : 30px 50px 30px 50px;
+    background-color: #6f2dbd;
+    font-family:Montserrat;
+    border-radius: .5em;
 }
 .largeText{
-    font-size:4em;
+    font-size: 2em;
     font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-top : 100px;
 }
+.subText{
+    font-size : 1.5em;
+    font-weight: 700;
+    /* letter-spacing : 0.1em; */
+}
+
 .byText{
     font-size : 20px;
     display : flex;
@@ -39,3 +71,4 @@
     bottom : 0;
     margin-bottom: 0;
 }
+

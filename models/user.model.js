@@ -8,7 +8,7 @@ const User = new mongoose.Schema(
         quote : {type : String},
     },
     {
-        collection  : "user-data"
+        collection  : "userData"
     }
 )
 

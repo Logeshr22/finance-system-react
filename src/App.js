@@ -7,13 +7,16 @@ import About from "./About";
 import CustomerDashboard from "./CustomerDashboard";
 import "./Navigation.css";
 import {Helmet} from "react-helmet";
-import Background from "./beach.jpg"
+import Background from "./beach.jpg";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   var sectionStyle = {
     backgroundImage: "url(" + { Background } + ")"
   };
   return (
     <div className="App" style={sectionStyle}>
+      <ToastContainer autoClose={5000} />
       <Helmet>
         <style>{"body { background-color : white; }"}</style>
       </Helmet>
@@ -24,7 +27,7 @@ function App() {
               <Link to="./Login" className="text-link">LOGIN</Link>
               <Link to="./Register" className="text-link">REGISTER</Link>
               <Link to="./About" className="text-link">ABOUT</Link>
-          </nav>   
+          </nav> 
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/Login" element={<Login/>}/>

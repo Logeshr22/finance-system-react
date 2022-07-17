@@ -1,6 +1,8 @@
 import "./Login.css";
-import {useState,useEffect} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+
 function Register(){
     //Form Validation
     // const initialValues = {name : "",email : "",password : ""};
@@ -58,6 +60,9 @@ function Register(){
     const handlePassword = function(e){
         setPassword(e.target.value);
     }
+    const handleOnclick = function(){
+        navigate("/Login");
+    }
     async function registerUser(event){
         event.preventDefault();
         const response  = await fetch('http://localhost:3001/api/register/',{
@@ -75,9 +80,9 @@ function Register(){
         console.log(data);
         
         if(data.status==="ok"){
-            navigate("/Login");
+            // navigate("/Login");
+            toast.success("Registered Successfully");
         }
-
     }
 
     // const twoCallsName = e => {
@@ -126,7 +131,7 @@ function Register(){
                     <button  className="submitButton" >Register</button>
                     {/* <input type="submit" id="button" value="Register"></input> */}
                     {/* <button class="submitButton">Login as admin</button> */}    
-                    <p><a href="/Users/logee/Documents/Codes/miniProject/finance-system/login.html" className="link">Already Registerd? Login</a></p>
+                    <p><a onClick={handleOnclick} className="link">Already Registerd? Login</a></p>
                     </form>                 
                 </div>
                 </div>

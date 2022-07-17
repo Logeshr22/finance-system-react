@@ -1,7 +1,12 @@
 import React from "react";
 import "./Login.css";
-import {useState,useEffect} from "react";
+import {useState} from "react";
+import {toast} from "react-toastify";
+// import {Link,Routes, BrowserRouter as Router,Route} from "react-router-dom";
+// import AdminLogin from "./AdminLogin";
 function Login(){
+    //Form Validation
+
     // const initialValues = {email : "",password : ""};
     // const [formValues, setFormValues] = useState(initialValues);
     // const [formErrors, setFormErrors] = useState({});
@@ -41,6 +46,7 @@ function Login(){
 
 
     // Authentication
+
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -62,15 +68,21 @@ function Login(){
                 password,
             }),
         })
+        console.log(response);
         const data = await response.json();
-        if(data.user){
-            localStorage.setItem("token",data.user);
-            alert("Login successful");
-            window.location.href = "/cDashboard"; 
+        try{
+            if(data.user){
+                localStorage.setItem("token",data.user);
+                window.location.href = "./CustomerDashboard"; 
+            }else{
+                console.log("Invalid Credentials");
+                toast.error("Login failed");
+            }
         }
-        else{
-            alert("Please check email and password");
+        catch(e){
+            console.error(e);
         }
+        console.log("Hello")
         console.log(data);
     }
 
@@ -89,17 +101,14 @@ function Login(){
                  onChange={handlePassword}/>
                 {/* <p className="errorMessage">{formErrors.password}</p> */}
                 <button className="submitButton">Login</button>
-                {/* <button class="submitButton">Login as admin</button> */}    
-                <p><a href="/Users/logee/Documents/Codes/miniProject/finance-system/adminLogin.html" className="link">Login as admin?</a></p>
+                {/* <button class="submitButton">Login as admin</button> */}   
+                {/* <p><a href="" className="link">Login as admin?</a></p> */}
             </form>
             </div>
             </div>
         </div>
-       
     );
 }
-
-
 
 export default Login;
 

@@ -12,7 +12,7 @@ function Home(){
                 <tr>
                     <td className="div1part1">
                     <p id="mainHeading"><span id="l1" >KRISHNA </span><span id="l2" className="">FINANCE</span></p>
-                    <p id="heading">YOUR <span className="highlight">ESSENTIAL</span> FINANCE MANAGEMENT SYSTEM.</p>
+                    <p id="heading">YOUR <span className="highlight">ESSENTIAL</span> FINANCE MANAGEMENT SYSTEM</p>
                     </td>
                     <td className="div1part2">
                     <p className="largeText">What our software do <span className="hightlight">?</span></p>
