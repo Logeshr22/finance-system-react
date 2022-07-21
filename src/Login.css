@@ -13,6 +13,13 @@
     display: flex;
     font-family: Montserrat;
 }
+.Records{
+    background-image: url("./images/bg1.jpg");
+    height: 100vh;
+    background-size: cover;
+    color : white;
+    font-family: Montserrat;
+}
 #loginTitle{
     border-bottom: 0;
     color :white;
@@ -260,4 +267,28 @@
 .record-text{
     font-size : 1.3em;
     font-weight: 500;
+}
+.table-container{
+    display : flex;
+    color : black;
+    background-color: white;
+    font-family : montserrat;
+    margin : auto 200px 20px 200px;
+}
+.table-data,.table-header{
+    border : 3px solid black;
+    padding : 0px;
+}
+.table-title,.table-header{
+    font-family : montserrat;
+    margin : 0px;
+}
+.table-header{
+    background-color: #6f2dbd;
+    color : white;
+}
+.table-title{
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding : 30px 0px 30px 0px;
 }

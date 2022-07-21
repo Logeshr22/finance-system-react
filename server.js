@@ -6,8 +6,11 @@ const User  = require("./models/user.model");
 const Loan = require("./models/loan.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); 
+const twilio = require("twilio");
+const routes = require('./routes/api');
 
 app.use(cors());
+app.use('/api', routes);
 app.use(express.json())
 app.get("/hello",(req,res)=>{
     res.send("hello world");
@@ -47,22 +50,26 @@ app.post("/api/addRecord",async (req,res)=>{
     
 });
 app.post("/api/deleteRecord",async (req,res)=>{
-    try{
-        await Loan.deleteOne({
-            loanID : req.body.loanID,
-        });
-        res.json({status : "ok"});
-    }
-    catch(err){
-        res.json({status : "error", error : "record not deleted"});
-    }
+        try{
+            await Loan.deleteMany({
+                loanID : req.body.loanID,
+            });
+            res.json({status : "ok"});
+        }
+        catch(err){
+            res.json({status : "error", error : "record not deleted"});
+        }
 })
+let a = 0;
 //fetchData
 app.post("/api/fetchData",async (req,res)=>{
     try{
-        const data = await Loan.find({
+        const countData = await Loan.count({
         });
-        console.log(data);
+        const displayData = await Loan.find({})
+        console.log("no. of data : "+countData);
+        console.log("data");
+        console.log(displayData);
         console.log("Fetched");
         res.json({status : "ok"});
     }catch(error){
@@ -98,6 +105,18 @@ app.post("/api/login", async (req,res)=>{
     }
 
 
+})
+//twilio send sms
+const accountId = "AC68579d53b68ab4fe5922dcfefc2a4a44";
+const authToken = "e9a46eb6b51615525167c4ccb91ba562";
+app.get("/send-sms",(req,res)=>{
+    var client = new twilio(accountId,authToken);
+    client.messages.create({
+        to : "+917358820898",
+        from : "+16199433607",
+        body : "Kindly pay the loan due",
+    })
+    res.send("SMS sent");
 })
 
 app.listen(3001,()=>{

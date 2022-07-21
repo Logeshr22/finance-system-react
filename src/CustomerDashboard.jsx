@@ -2,14 +2,14 @@ import React from "react";
 import jwt from "jsonwebtoken"
 import {useEffect,useState,useRef} from "react";
 import "./Login.css"
-import {toast} from "react-toastify";
-import {useNavigate} from "react-router-dom";
 
+import {toast} from "react-toastify";
+import {Navigate, useNavigate} from "react-router-dom";
 // import axios from "axios";
 
 
 
-const CustomerDashboard = ()=>{
+const CustomerDashboard = (props)=>{
     // const getBlogPost = ()=>{
     //     axios.get("https://localhost:27017/")
     // }
@@ -21,9 +21,11 @@ const CustomerDashboard = ()=>{
     const [timerSeconds,setTimerSeconds] = useState();
 
     let interval = useRef();
-    const startTimer = ()=>{
-        const countdownDate = new Date("Jul 17, 2022 17:25:00").getTime();
-        interval = setInterval(()=>{
+    let date = 18;
+    const startTimer = () => {
+
+        const countdownDate = new Date("Jul "+date+", 2022 19:24:00").getTime();
+        interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -33,6 +35,7 @@ const CustomerDashboard = ()=>{
             if(distance<0){
                 //stop timer
                 clearInterval(interval.current);
+                // sendSMS();
             }
             else{
                 //update timer
@@ -43,7 +46,8 @@ const CustomerDashboard = ()=>{
             }
         },1000)
     }
-    useEffect(()=>{
+
+    useEffect(() => {
         startTimer();
         return () => {
             clearInterval(interval.current);
@@ -52,33 +56,10 @@ const CustomerDashboard = ()=>{
 
 
 
-    const navigate = useNavigate();
-    async function populateQuote(){
-        const req = await fetch("http://localhost:3001/api/quote",{
-            headers : {
-                "x-access-token" : localStorage.getItem("token"),
-            },
-        })
-        const data = req.json();
-        console.log(data); 
-    }
-
-    //display loanData
 
 
-    useEffect(()=>{
-        const token = localStorage.getItem("token");
-        if(token){
-            const user = jwt.decode(token);
-            if(!user){
-                localStorage.removeItem("token");
-                navigate("/Login");
-            }
-            else{
-                // populateQuote();
-            }
-        }
-    },)
+
+
     const [amount,setAmount] = useState("");
     const [interest,setInterest] = useState("");
     const [loanID,setLoanID] = useState("");
@@ -115,6 +96,13 @@ const CustomerDashboard = ()=>{
             toast.error("Record not added");
         }
     }
+    //send sms
+    async function sendSMS(event){
+        event.preventDefault();
+        const response = await fetch("http://localhost:3001/send-sms");
+        const data = await response.json();
+        console.log(data);
+    }
     //fetch loan Data
     async function fetchData(event){
         event.preventDefault();
@@ -130,7 +118,7 @@ const CustomerDashboard = ()=>{
             }),
         })
         const data = await response.json();
-        console.log(data);
+        console.log(data); //status : "ok"
         if(data.status==="ok"){
             console.log("fetched");
         }else{
@@ -138,20 +126,7 @@ const CustomerDashboard = ()=>{
         }
     }
 
-    //display loan data
-    // const [loans,setLoans] = useState([]);
-    // const fetchLoanData = ()=>{
-    //     fetch("http://localhost:3001/api/fetchData")
-    //     .then(response=>{
-    //         return response.json()
-    //     })
-    //     .then(data=>{
-    //         setLoans(data)
-    //     })
-    // }
-
-
-
+    //delete the record
     async function deleteRecord(event){
         event.preventDefault();
         const response = await fetch("http://localhost:3001/api/deleteRecord",{
@@ -170,8 +145,50 @@ const CustomerDashboard = ()=>{
         if(data.status === "ok"){
             console.log("deleted");
             toast.success("Record deleted successfully")
-        }  
+        } else{
+            toast.error("Record not deleted");
+        }
     }
+
+    //display loan data
+    const navigate = useNavigate();
+    const handleOnClick = () =>{
+        navigate("/Records");
+    }
+
+    // const [loan,setLoan] = useState("")
+    // async function populateLoan(){
+    //     const req = await fetch("http://localhost:3001/api/loan",{
+    //         headers : {
+    //             "x-access-token" : localStorage.getItem("token"),
+    //         },
+    //     })
+    //     const data = await req.json()
+    //     if(data.status === "ok"){
+    //         setLoan(data.loan);
+    //         console.log(data);
+    //     }
+    //     else{
+    //         alert(data.error);
+    //     }
+    // }
+
+    // useEffect(()=>{
+    //     const token = localStorage.getItem("token");
+    //     if(token){
+    //         const user = jwt.decode(token);
+    //         if(!user){
+    //             localStorage.removeItem("token");
+    //             navigate("/Login");
+    //         }
+    //         else{
+    //             populateLoan();
+    //         }
+    //     }
+    // },[])
+
+
+
 
     return (
         <div className="CustomerDashboard">
@@ -181,13 +198,13 @@ const CustomerDashboard = ()=>{
                 <h1 className="header" id="loginTitle">ADD RECORD</h1>
                 <div className="formBox">
                 <form id="formBox" onSubmit={addRecord}>
-                    <input type="text" id="loanID" value={loanID}
+                    <input type="text" id="loanID"
                     onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="amount" value={amount}
+                    <input type="text" id="amount"
                     onChange={handleAmount} name="amount" placeholder="Amount" className="inputField" autoComplete="off"/>
 
-                    <input type="text" id="interest" value={interest}
+                    <input type="text" id="interest" 
                     onChange={handleInterest} name="interest" placeholder="Interest" className="inputField" autoComplete="off" />
 
                     <button  className="submitButton" >Add Loan Record</button>
@@ -217,7 +234,8 @@ const CustomerDashboard = ()=>{
                     
                 </div>
                 <div className="recordBox">
-                    <p className="record-text">No. of Records :</p>
+                    <p className="record-text">No. of Records : {props.data}</p>
+                    <h1>{props.data}</h1>
                 </div>
                 </div>
                 
@@ -244,7 +262,13 @@ const CustomerDashboard = ()=>{
 
             </div>
             <div>
-                <button className="submitButton" onClick={fetchData}>Show records</button>
+                <button className="submitButton" onClick={handleOnClick}>Show records</button>
+                {/* <button className="submitButton" onClick={sendSMS}>Send SMS</button> */}
+                {/* <ul>
+                    {loans.map(loans=>(
+                        <li key={loans.id}>{loans.amount}</li>
+                    ))}
+                </ul> */}
             </div>
            
             
