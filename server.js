@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User  = require("./models/user.model");
+const Admin = require("./models/admin.model");
 const Loan = require("./models/loan.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); 
@@ -20,7 +21,7 @@ mongoose.connect("mongodb://localhost:27017/userDB");
 
 const loanCount = Loan.countDocuments({loanID : "1"});
 console.log(loanCount);
-
+//customerRegistration
 app.post('/api/register', async (req, res) => {
 	try {
         const newPassword = await bcrypt.hash(req.body.password,10);
@@ -35,12 +36,28 @@ app.post('/api/register', async (req, res) => {
 	}
 });
 
+const registerAdmin = async (req,res)=>{
+    try{
+        const newPassword = await bcrypt.hash("Logesh123",10);
+        await Admin.create({
+            email : "logesh.r22@gmail.com",
+            password : newPassword,
+        });
+        console.log("Admin created");
+    }catch(err){
+        console.log("Admin not created");
+    }
+}
+// registerAdmin();
+
 app.post("/api/addRecord",async (req,res)=>{
     try{
         await Loan.create({
+           customerName : req.body.customerName,
            loanID : req.body.loanID,
            amount : req.body.amount,
-           interest : req.body.interest
+           billNumber : "-",
+           paidStatus : "Not Paid"
         });
         res.json({status : "ok"});
     }
@@ -49,9 +66,24 @@ app.post("/api/addRecord",async (req,res)=>{
     }
     
 });
+app.post("/api/updateRecord",async (req,res)=>{
+    try{
+        await Loan.updateOne({
+            customerName : req.body.customerName,
+            loanID : req.body.loanID
+        },{
+            $set : {billNumber : req.body.billNumber,paidStatus : "Paid"}
+        })
+        res.json({status : "ok"})
+    }
+    catch(err){
+        res.json({status : "error",error : "record not updated"})
+    }
+});
 app.post("/api/deleteRecord",async (req,res)=>{
         try{
             await Loan.deleteMany({
+                customerName : req.body.customerName,
                 loanID : req.body.loanID,
             });
             res.json({status : "ok"});
@@ -60,7 +92,6 @@ app.post("/api/deleteRecord",async (req,res)=>{
             res.json({status : "error", error : "record not deleted"});
         }
 })
-let a = 0;
 //fetchData
 app.post("/api/fetchData",async (req,res)=>{
     try{
@@ -103,8 +134,33 @@ app.post("/api/login", async (req,res)=>{
     else{
         return res.json({status : "ok", user : false})
     }
+})
 
+app.post("/api/adminLogin", async (req,res)=>{
+    const token = req.headers["x-access-token"];
+    const admin = await Admin.findOne({
+        email : req.body.email,
+    });
 
+    if(!admin){return {status : "error", error : "Invalid login"}}
+
+    const isPasswordValid = await bcrypt.compare(
+        req.body.password,
+        admin.password
+    );
+    
+    if(isPasswordValid){
+        const token = jwt.sign(
+        {
+            email : admin.email,
+        },
+        "secret123",
+    )
+        return res.json({status : "ok",admin : token})
+    }
+    else{
+        return res.json({status : "ok", admin : false})
+    }
 })
 //twilio send sms
 const accountId = "AC68579d53b68ab4fe5922dcfefc2a4a44";

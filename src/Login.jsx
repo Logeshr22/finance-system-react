@@ -2,6 +2,7 @@ import React from "react";
 import "./Login.css";
 import {useState} from "react";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 // import {Link,Routes, BrowserRouter as Router,Route} from "react-router-dom";
 // import AdminLogin from "./AdminLogin";
 function Login(){
@@ -85,7 +86,10 @@ function Login(){
         console.log("Hello")
         console.log(data);
     }
-
+    const navigate = useNavigate();
+    const handleOnClickLink = () =>{  
+        navigate("/AdminLogin");
+    }
     return(
         <div className="Login">
             <div className="formContainer">
@@ -102,7 +106,7 @@ function Login(){
                 {/* <p className="errorMessage">{formErrors.password}</p> */}
                 <button className="submitButton">Login</button>
                 {/* <button class="submitButton">Login as admin</button> */}   
-                {/* <p><a href="" className="link">Login as admin?</a></p> */}
+                <p className="link" onClick={handleOnClickLink}>Login as admin?</p>
             </form>
             </div>
             </div>

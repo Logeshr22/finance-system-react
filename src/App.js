@@ -5,7 +5,9 @@ import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
 import Records from "./Records";
+import AdminLogin from "./AdminLogin";
 import CustomerDashboard from "./CustomerDashboard";
+import AdministratorDashboard from "./AdministratorDashboard";
 import "./Navigation.css";
 import {Helmet} from "react-helmet";
 import Background from "./beach.jpg";
@@ -36,6 +38,8 @@ function App() {
           <Route exact path="/About" element={<About/>}/>
           <Route exact path="/Records" element={<Records/>}/>
           <Route exact path="/CustomerDashboard" element={<CustomerDashboard/>}/>
+          <Route exact path="/AdministratorDashboard" element={<AdministratorDashboard/>}/>
+          <Route exact path="/AdminLogin" element={<AdminLogin/>}/>
         </Routes>
       </Router>
     </div>

@@ -4,9 +4,11 @@ import "./Login.css";
 import {useNavigate} from "react-router-dom";
 class Records extends React.Component{
     state = {
+        customerName : "",
         loanID : "",
         amount : "",
-        interest : "",
+        billNumber : "",
+        paidStatus : "",
         posts : [],
     };
     componentDidMount = () =>{
@@ -26,14 +28,20 @@ class Records extends React.Component{
         });
     }
 
+
     displayPosts=(posts)=>{
         if (!posts.length) return null;
         return posts.map((post, index) => (
           <div key={index}  className="table-container">
             <table className="table">
                 <tr>
+                    <td className="table-data"> <h3>{post.customerName}</h3></td>
                     <td className="table-data"> <h3>{post.loanID}</h3></td>
                     <td className="table-data"><h3>{post.amount}</h3></td>
+                    <td className="table-data"><h3>{post.billNumber}</h3></td>
+                    <td className="table-data"><h3>{post.paidStatus}</h3></td>
+
+
                 </tr>
             </table> 
           </div>
@@ -44,7 +52,7 @@ class Records extends React.Component{
         console.log("State : ",this.state);
 
         const toCustomerDashboard = ()=>{
-            this.props.navigate("/CustomerDashboard");
+            this.props.navigate("/AdministratorDashboard");
         }
 
         return(
@@ -53,8 +61,12 @@ class Records extends React.Component{
                 <div className="table-container">
                 <table className="table">
                     <tr>
+                        <td className="table-header"><h3>NAME OF CUSTOMER</h3></td>
                         <td className="table-header"><h3>LOAN ID (#)</h3></td>
                         <td className="table-header"><h3>AMOUNT (₹)</h3></td>
+                        <td className="table-header"><h3>BILL NUMBER</h3></td>
+                        <td className="table-header"><h3>PAID STATUS</h3></td>
+
                     </tr>
                 </table>
                 </div>
