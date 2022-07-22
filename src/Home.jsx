@@ -15,8 +15,8 @@ function Home(){
                     <p id="heading">YOUR <span className="highlight">ESSENTIAL</span> FINANCE MANAGEMENT SYSTEM</p>
                     </td>
                     <td className="div1part2">
-                    <p className="largeText">What our software do <span className="hightlight">?</span></p>
-                    <p className="pText">Money Matters processes an organization uses to manage assets, income and expenses. This FMS performs various functions: reducing accounting errors, maintaining audit trails and ensuring compliance with applicable accounting standards.</p>
+                    <p className="largeText">What we do <span className="hightlight">?</span></p>
+                    <p className="pText">Our Finance management system processes an organization uses to manage assets, income and expenses. This FMS performs various functions: reducing accounting errors, maintaining audit trails and ensuring compliance with applicable accounting standards.</p>
                     </td>
                 </tr>
             </table>

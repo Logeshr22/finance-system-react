@@ -269,15 +269,22 @@
     font-weight: 500;
 }
 .table-container{
-    display : flex;
+    display: flex;
     color : black;
     background-color: white;
+    margin : 0px 300px 0px 300px;
+    align-items: center;
+    justify-content: center;
+}
+.table{
+    color : black;
     font-family : montserrat;
-    margin : auto 200px 20px 200px;
+    border : 1px solid black;
+    border-radius: 10px;
 }
 .table-data,.table-header{
-    border : 3px solid black;
     padding : 0px;
+    border-right: 3px solid black;
 }
 .table-title,.table-header{
     font-family : montserrat;
