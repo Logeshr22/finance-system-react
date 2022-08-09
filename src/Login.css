@@ -1,36 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400;1,500&display=swap');
 .Login{
-    background-image: url("./images/bg1.jpg");
+    background-image: url("./bg3.jpg");
     height: 100vh;
     background-size: cover;
     display: flex;
     font-family: Montserrat;
 }
 .Register{
-    background-image: url("./images/bg1.jpg");
+    background-image: url("./bg3.jpg");
     height: 100vh;
     background-size: cover;
     display: flex;
     font-family: Montserrat;
 }
 .Records{
-    background-image: url("./images/bg1.jpg");
+    background-image: url("./bg3.jpg");
     height: 100vh;
     background-size: cover;
     color : white;
     font-family: Montserrat;
 }
+.Record-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom : 20px;
+}
+.buttons{
+    display : flex;
+}
+
 .title{
+    font-size : 20px;
+    margin: 0px;
+}
+.logoutButton{
+    border : 2px solid rgb(169, 1, 255);
+    padding : 5px 10px 5px 10px;
+    font-size : 14px;
+    background-color: rgb(169, 1, 255);
+    color : white;
     font-family: montserrat;
-    display: block;
-    letter-spacing: 0.5px;
-    margin : 100px auto 30px auto;
-    font-size : 30px;
+    border-radius: 5px;
     font-weight: bold;
+}
+.logoutButton:hover,.logoutButton:active{
+    transform: scale(1.10);
+    transition : 0.1s ease-in-out;
+}
+.logoutButton:active{
+    background-color : white;
+    color : rgb(169, 1, 255);
+    border : 2px solid white;
 
 }
+
 #dialogue{
-    color : #6f2dbd;
+    color : rgb(169, 1, 255);
     font-size : 1.8em;
     font-weight: 400;
     font-family : Montserrat;
@@ -43,10 +69,10 @@
     justify-content: space-evenly;
     width: 500px;
     border-radius : 10px;
-    background-color: #6f2dbd;
     padding : 50px;
+    background-color: white;
     margin : 150px auto auto auto;
-    border : 3px solid black;
+    /* border : 3px solid black; */
 }
 
 
@@ -58,15 +84,16 @@
     /* margin-right: 25px; */
 }
 .form .inputField{
-    border :3px solid #6f2dbd;
-    /* color :#6f2dbd; */
+
+
+    border-bottom :2px solid rgb(220, 220, 220);
     color : black;
     background-color:white;
     font-size : 1em;
     margin-bottom : 15px;
+    border-width: 0 0 2px;
     width: 200px;
     padding : 15px 15px 15px 15px;
-    border-radius : 10px;
     transition:0.1s ease-in-out;
     font-family : montserrat;
     outline:none;
@@ -74,12 +101,17 @@
 }
 
 
-.inputField:hover,.inputField:focus,.inputField:active{
-    border : 3px solid black;
+.inputField:hover{
+    border-bottom :2px solid rgb(179, 179, 179);
+}
+.inputField:active,.inputField:focus{
+    border-bottom :2px solid rgb(169, 1, 255);
+
 }
 ::placeholder{
     /* color : #6f2dbd; */
     color : rgba(83, 82, 82, 0.979);
+    font-family : montserrat;
 }
 .errorMessage{
     color : white;
@@ -90,9 +122,10 @@
     font-size : 16px;
     font-family : Montserrat,Menlo;
     padding : 10px 14px 10px 14px;
-    background-color :white;
+    background-color : rgb(169, 1, 255);
+
     /* color :#6f2dbd; */
-    color : black;
+    color : white;
     border : 2px solid white;
     border-radius : 8px;
     display: flex;
@@ -100,7 +133,6 @@
     justify-content: center;
     font-weight: bold;
     transition:0.1s ease-in-out;
-    border : 3px solid black;
     outline : none;
     
 }
@@ -112,13 +144,18 @@
     transform:scale(1.10);
     transition:0.1s ease-in-out;
 }
-
+.link-text{
+    font-size : 0.8em;
+    font-family : montserrat;
+    color : black;
+    font-weight: bold;
+}
 .form .link{
-    color :white;
+    color :rgb(169, 1, 255);
     font-family : Montserrat,Menlo;
-    font-size : 1.2em;
+    font-size : 0.9em;
+    font-weight: bold;
     text-decoration: none;
-    font-weight: 500;
     display : flex;
     margin : 10px auto;
     justify-content: center;
@@ -130,7 +167,7 @@
     display : flex;
     justify-content: space-evenly;
     align-items: center;
-    margin : 30px 300px 30px 300px;
+    margin : 30px 200px 30px 200px;
 }
 .formContainerBox{
     display: flex;
@@ -138,87 +175,124 @@
     justify-content: space-evenly;
     width: 300px;
     border-radius : 10px;
-    background-color: #6f2dbd;
+    background-color: white;
     padding : 50px;
-    border : 3px solid black;
     height : 250px;
 }
 .formBox .inputField{
-    border :3px solid #6f2dbd;
-    /* color :#6f2dbd; */
+
+    border-bottom :2px solid rgb(220, 220, 220);
     color : black;
     background-color:white;
     font-size : 1em;
     margin-bottom : 15px;
+    border-width: 0 0 2px;
     width: 150px;
     padding : 15px 15px 15px 15px;
-    border-radius : 10px;
     transition:0.1s ease-in-out;
     font-family : montserrat;
     outline:none;
+}
+.formBox .inputField:hover{
+    border-bottom :2px solid rgb(179, 179, 179);
+}
+.formBox .inputField:active,.formBox .inputField:focus{
+    border-bottom :2px solid rgb(169, 1, 255);
 }
 .LoanDetails{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 500px;
     border-radius : 10px;
-    background-color: #6f2dbd;
+    background-color: white;
     padding : 50px;
-    border : 3px solid black;
     height : 400px;
 }
 .LoanDetails .inputField{
-    border :3px solid #6f2dbd;
-    /* color :#6f2dbd; */
+
+    border-bottom :2px solid rgb(220, 220, 220);
     color : black;
     background-color:white;
     font-size : 1em;
     margin-bottom : 15px;
-    width: 250px;
+    border-width: 0 0 2px;
+    width: 200px;
     padding : 15px 15px 15px 15px;
-    border-radius : 10px;
     transition:0.1s ease-in-out;
     font-family : montserrat;
     outline:none;
+}
+.LoanDetails .inputField:hover{
+    border-bottom :2px solid rgb(179, 179, 179);
+}
+.LoanDetails .inputField:active, .LoanDetails .inputField:focus{
+    border-bottom : 2px solid rgb(169, 1, 255);
 }
 .submitButton{
     font-size : 16px;
     font-family : Montserrat,Menlo;
     padding : 10px 14px 10px 14px;
-    background-color :white;
-    /* color :#6f2dbd; */
-    color : black;
-    border : 2px solid white;
+    background-color :rgb(169, 1, 255);
+    border : 2px solid rgb(169, 1, 255);
     border-radius : 8px;
     display: flex;
     margin : 15px auto;
     justify-content: center;
+    color : white;
     font-weight: bold;
     transition:0.1s ease-in-out;
-    border : 3px solid black;
-    outline : none;
-    
+    outline : none;   
 }
 .submitButton:active{
     background-color: black;
     color : white;
+    border : 2px solid black;
+}
+.submitButton:active,.submitButton:hover{
+    transform:scale(1.01);
+    transition : 0.1s ease-in-out;
 }
 .submitButton:hover,.submitButton:active{
     transform:scale(1.10);
     transition:0.1s ease-in-out;
 }
-
+.actionButton{
+    font-size : 16px;
+    font-family : Montserrat,Menlo;
+    padding : 17px 14px 17px 14px;
+    background-color :white;
+    border : 2px solid white;
+    border-radius : 8px;
+    display: flex;
+    margin : 50px auto;
+    justify-content: center;
+    color : black;
+    font-weight: bold;
+    transition:0.1s ease-in-out;
+    outline : none;
+}
+.actionButton:active{
+    background-color: black;
+    color : white;
+    border : 2px solid black;
+}
+.actionButton:active,.actionButton:hover{
+    transform:scale(1.05);
+    transition : 0.1s ease-in-out;
+    box-shadow: 5px 5px 30px rgb(65, 65, 65);
+}
 #loginTitle.header{
     display: flex;
     justify-content: space-evenly;
     height: 200px;
     flex-direction: column;
+    font-weight: bold;
 }
 
 #loginTitle{
     border-bottom: 0;
-    color :white;
+    color :rgb(169, 1, 255);
     font-size : 1.5em;
     font-weight: 500;
     padding-right : 25px;
@@ -227,7 +301,7 @@
 .timerBox{
     border : 3px solid black;
     border-radius : 8px;
-    background-color:#6f2dbd;
+    background-color:rgb(169, 1, 255);
     width : 400px;
     height: 200px;
     font-family : montserrat;
@@ -271,11 +345,11 @@
 .recordBox{
     display : flex;
     height : 120px;
-    width : 400px;
+    width : 808px;
     justify-content: center;
     align-items: center;
-    border : 2px solid black;
-    background-color: #6f2dbd;
+    border : 2px solid #6f2dbd;
+    background-color: black;
     border-radius : 8px;
     margin : 0px auto 0px auto;
 }
@@ -296,30 +370,66 @@
     display: flex;
     color : black;
     background-color: white;
-    margin : 0px 300px 0px 300px;
+    margin : 0px 10px 0px 10px;
     align-items: center;
     justify-content: center;
 }
 .table{
     color : black;
     font-family : montserrat;
-    border : 1px solid black;
     border-radius: 10px;
 }
 .table-data,.table-header{
     padding : 0px;
-    border-right: 3px solid black;
+    /* border-right: 3px solid white; */
 }
 .table-title,.table-header{
     font-family : montserrat;
     margin : 0px;
 }
 .table-header{
-    background-color: #6f2dbd;
+    background-color: black;
     color : white;
 }
 .table-title{
     letter-spacing: 1px;
     font-weight: 400;
     padding : 30px 0px 30px 0px;
+}
+.titleContainer{
+    font-style : italic;
+    font-family: montserrat;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+    margin : 0px 0px 20px 0px;
+    padding : 20px 50px 20px 50px;
+    margin : 0px 0px 50px 0px;
+    font-weight: bolder;
+    background-color: black;
+    color :white;
+    align-items: center;
+
+}
+.material-form{
+    background-color: white;
+    padding : 20px 40px 20px 40px;
+    border-radius: 10px;
+    display: flex;
+    color : rgb(169, 1, 255);
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+#interestCalculatorHeader{
+    color :rgb(169, 1, 255);
+    font-family : montserrat;
+    font-size : 20px;
+    font-weight: 700;
+    padding-bottom : 15px;
+}
+.resultValue{
+    margin-bottom : 15px;
+    font-family :sans-serif;
 }

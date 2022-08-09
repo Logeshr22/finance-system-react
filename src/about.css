@@ -18,7 +18,7 @@
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    background-image: url("./images/bg1.jpg");
+    background-image: url("./bg3.jpg");
     background-size: cover;
 }
 .CustomerDashboard{
@@ -28,14 +28,23 @@
     /* justify-content: space-between; */
     flex-direction: column;
     height: 100vh;
-    background-image: url("./images/bg1.jpg");
+    background-image: url("./bg3.jpg");
+    background-size: cover;
+}
+.AdministratorDashboard{
+    font-family : Montserrat;
+    color: white;
+    display : flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("./bg3.jpg");
     background-size: cover;
 }
 .container{
-    border : 3px solid black;
     margin : 150px 50px auto 50px;
     padding : 30px 50px 30px 50px;
-    background-color: #6f2dbd;
+    background-color: rgb(204,0,255);
     font-family:Montserrat;
     border-radius: .5em;
 }
@@ -43,7 +52,7 @@
     border : 3px solid black;
     margin : auto 30em auto 30em;
     padding : 30px 50px 30px 50px;
-    background-color: #6f2dbd;
+    background-color: rgb(155,0,254);
     font-family:Montserrat;
     border-radius: .5em;
 }

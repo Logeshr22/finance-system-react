@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400;1,500&display=swap');
 .Home{
     color : white;
+    height: 100vh;
     font-family : Montserrat;
+    background-image: url("./bg3.jpg");
+
     /* display:flex; */
 }
 table{
@@ -17,17 +20,18 @@ td{
 }
 .part2{
     /* background-color: #e0aaff; */
-    background-color: #5a189a;
+    background-color: rgb(21, 21, 21);
 }
 .div1part1{
     color : white;
-    background-image:url("./bg1.jpg");
+    /* background-image:url("./bg3.jpg"); */
     background-size:cover;
+    
     padding : 0px 20px 0px 20px;
 }
 .div1part2{
-    /* background-color: #9d4edd; */
-    background-color: #6f2dbd;
+    
+    background-size : cover;
     /* background-color: #d62828; */
 }
 
@@ -53,7 +57,8 @@ td{
     align-items: center;
     transition:0.2s ease-in-out;
     /* background-color: #6f2dbd; */
-    background-color: #9d4edd;
+    background-color: white;
+    color: black;
     padding : 20px 20px 20px 20px;
     height: 200px;
     width: 350px;
@@ -65,13 +70,14 @@ td{
 .imageText{
     /* padding-top : 20px; */
     font-size : 20px;
-    font-weight:500;
+    font-weight:600;
 }
 img,.img{
     border-radius: .5em;
 }
 .pText{
-    font-size : 20px;
+    font-size : 22px;
+    font-weight: 500;
     padding : 0px 50px 0px 50px;
     line-height: 50px;
 }
@@ -121,7 +127,7 @@ p.largeText{
 }
 .highlight{
     font-weight: bold;
-    color :#6f2dbd;
+    color :white;
 }
 div.footer{
     padding : 15px 30px 15px 30px;

@@ -2,14 +2,13 @@ import "./Login.css";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
-
 function Register(){
     //Form Validation
     // const initialValues = {name : "",email : "",password : ""};
     // const [formValues, setFormValues] = useState(initialValues);
     // const [formErrors, setFormErrors] = useState({});
     // const [isSubmit,setIsSubmit] = useState(false);
-
+    const [errorMessage, setErrorMessage] = useState('')
     // const handleChange = function(e){
     //     const {name,value} = e.target;
     //     setFormValues({...formValues,[name]:value});
@@ -19,11 +18,25 @@ function Register(){
     //     setFormErrors(validate(formValues));
     //     setIsSubmit(true);
     // }
+    // const validate = (value) => {
+ 
+    //     if (validator.isStrongPassword(value, {
+    //       minLength: 8, minLowercase: 1,
+    //       minUppercase: 1, minNumbers: 1, minSymbols: 1
+    //     })) {
+    //       setErrorMessage('Strong Password')
+    //     } else {
+    //       setErrorMessage('Weak Password')
+    //     }
+    //   }
     // const validate = function(values){
     //     const errors = {};
     //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     //     if(!values.name){
     //         errors.name = "Name is required";
+    //     }
+    //     else if(values.name.length<4){
+    //         errors.name = "Name must be at least 4 characters"
     //     }
     //     if(!values.email){
     //         errors.email = "Email is required";
@@ -80,30 +93,10 @@ function Register(){
         console.log(data);
         
         if(data.status==="ok"){
-            // navigate("/Login");
+            navigate("/Login");
             toast.success("Registered Successfully");
         }
     }
-
-    // const twoCallsName = e => {
-    //     this.handleChange(e);
-    //     this.handleName(e);
-    // }
-
-    // const twoCallsEmail = e => {
-    //     this.handleChange(e);
-    //     this.handleEmail(e);
-    // }
-
-    // const twoCallsPassword = e =>{
-    //     this.handleChange(e);
-    //     this.handlePassword(e);
-    // }
-
-    // const twoCallsSubmit = e =>{
-    //     this.handleSubmit(e);
-    //     this.registerUser(e);
-    // }
 
 
 
@@ -119,23 +112,19 @@ function Register(){
                     <div className="error"></div>
                     <input type="text" id="name"  name="name" placeholder="Name" className="inputField" autoComplete="off" 
                      onChange={handleName}/>
-                    {/* <p className="errorMessage">{formErrors.name}</p> */}
-                    {/* <input type="text" name="lastName" placeholder="Last Name" className="inputField" /> */}
                     <input type="email" id="email" name="email" placeholder="Email" className="inputField" autoComplete="off"
                      onChange={handleEmail}/>
-                    {/* <p className="errorMessage">{formErrors.email}</p> */}
-                    {/* <input type="text" name="username" placeholder="Username" className="inputField" /> */}
                     <input type="password" id="password" name="password" placeholder="Password" className="inputField" autoComplete="off" 
                      onChange={handlePassword}/>
+                     {errorMessage === '' ? null : 
+                     <span style={{fontWeight: 'bold',color: 'black'}}>{errorMessage}</span>}
                     {/* <p className="errorMessage">{formErrors.password}</p> */}
-                    <button  className="submitButton" >Register</button>
-                    {/* <input type="submit" id="button" value="Register"></input> */}
-                    {/* <button class="submitButton">Login as admin</button> */}    
+                    <button className="submitButton" >Register</button>
+                    {/* <input type="submit" id="button" value="Register"></input> */} 
                     <p><a onClick={handleOnclick} className="link">Already Registerd? Login</a></p>
                     </form>                 
                 </div>
-                </div>
-               
+                </div>    
         </div>
     );
 }

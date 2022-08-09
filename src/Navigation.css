@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400;1,500&display=swap');
 #l1{
-    font-weight: 400;
+    font-weight: 500;
 }
 #l2{
     font-weight: bold;
@@ -9,7 +9,6 @@
 nav{
     font-family : Montserrat,Menlo;
     color:white;
-    /* background-color:#6f2dbd; */
     background-color: black;
     font-size : 20px;
     list-style: none;
@@ -17,12 +16,13 @@ nav{
     display: flex;
     justify-content: space-evenly;
     position: sticky;
+    /* margin : 10px 10px auto 10px; */
     top:0;
     /* border-top : 20px solid black; */
 }
 .text-link{
     text-decoration: none;
     color : inherit;
-    font-weight: 500;
+    font-weight: bold;
     /* font-size : 17px; */
 }

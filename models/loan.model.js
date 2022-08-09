@@ -7,6 +7,7 @@ const Loan = new mongoose.Schema(
         amount  : {type : String, required : true},
         billNumber : {type : String},
         paidStatus : {type : String},
+        verifyStatus : {type : String},
     },
     {
         collection  : "loanData"

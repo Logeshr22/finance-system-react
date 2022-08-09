@@ -83,12 +83,14 @@ function Login(){
         catch(e){
             console.error(e);
         }
-        console.log("Hello")
         console.log(data);
     }
     const navigate = useNavigate();
-    const handleOnClickLink = () =>{  
+    const handleAdminLogin = () =>{  
         navigate("/AdminLogin");
+    }
+    const handleRegister = () => {
+        navigate("/Register");
     }
     return(
         <div className="Login">
@@ -106,7 +108,10 @@ function Login(){
                 {/* <p className="errorMessage">{formErrors.password}</p> */}
                 <button className="submitButton">Login</button>
                 {/* <button class="submitButton">Login as admin</button> */}   
-                <p className="link" onClick={handleOnClickLink}>Login as admin?</p>
+                <p className="link" onClick={handleAdminLogin}>Login as admin?</p>
+                <p>
+                <p className="link" onClick={handleRegister}>New User? Register</p>
+                </p>
             </form>
             </div>
             </div>

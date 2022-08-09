@@ -1,7 +1,10 @@
 import React from "react"
 import axios from "axios"
+import {useState} from "react";
 import "./Login.css";
 import {useNavigate} from "react-router-dom";
+import { MDBIcon } from 'mdb-react-ui-kit';
+
 class Records extends React.Component{
     state = {
         customerName : "",
@@ -9,6 +12,7 @@ class Records extends React.Component{
         amount : "",
         billNumber : "",
         paidStatus : "",
+        verifyStatus : "",
         posts : [],
     };
     componentDidMount = () =>{
@@ -40,7 +44,7 @@ class Records extends React.Component{
                     <td className="table-data"><h3>{post.amount}</h3></td>
                     <td className="table-data"><h3>{post.billNumber}</h3></td>
                     <td className="table-data"><h3>{post.paidStatus}</h3></td>
-
+                    <td className="table-data"><h3>{post.verifyStatus}</h3></td>
 
                 </tr>
             </table> 
@@ -54,24 +58,36 @@ class Records extends React.Component{
         const toCustomerDashboard = ()=>{
             this.props.navigate("/AdministratorDashboard");
         }
-
         return(
             <div className="Records">
-                <h1 className="table-title">Loan Records</h1>
+                <div className="titleContainer">
+                    <p className="title">LOAN RECORDS</p>
+                </div>
+            <div className="Record-container">
+            <div className="Record">
                 <div className="table-container">
                 <table className="table">
                     <tr>
-                        <td className="table-header"><h3>NAME OF CUSTOMER</h3></td>
+                        <td className="table-header"><h3>CUSTOMER NAME</h3></td>
                         <td className="table-header"><h3>LOAN ID (#)</h3></td>
                         <td className="table-header"><h3>AMOUNT (₹)</h3></td>
                         <td className="table-header"><h3>BILL NUMBER</h3></td>
                         <td className="table-header"><h3>PAID STATUS</h3></td>
+                        <td className="table-header"><h3>VERIFY STATUS</h3></td>
 
                     </tr>
                 </table>
                 </div>
                 {this.displayPosts(this.state.posts)}
-                <button className="submitButton" onClick={toCustomerDashboard}>Back</button>
+                {/* <button className="submitButton" onClick={toCustomerDashboard}>Back</button> */}
+                </div>
+
+                
+            </div>
+            <button className="actionButton" onClick={toCustomerDashboard}>Back to Dashboard</button>
+
+                {/* <p className="title">ADMINISTRATOR DASHBOARD</p> */}
+                {/* <button className="logoutButton" onClick={handleLogoutButton}>Logout</button> */}
             </div>
         )
     }
@@ -80,6 +96,7 @@ function WithNavigate(props){
     let navigate = useNavigate();
     return <Records {...props} navigate={navigate}/>
 }
+
 
 
 export default WithNavigate;

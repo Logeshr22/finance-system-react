@@ -77,11 +77,11 @@ function AdminLogin(){
                 window.location.href = "./AdministratorDashboard"; 
             }else{
                 console.log("Invalid Credentials");
-                toast.error("Login failed");
             }
         }
         catch(e){
             console.error(e);
+            toast.error("Login failed");
         }
         console.log(data);
     }
