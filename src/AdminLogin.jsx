@@ -112,7 +112,7 @@ function AdminLogin(){
     return(
         <div className="Login">
             <div className="formContainer">
-            <h1 className="header" id="loginTitle">ADMINISTRATOR LOGIN <span><span id="l1" >KRISHNA </span>
+            <h1 className="header" id="loginTitle">ADMINISTRATOR LOGIN <span><br/><span id="l1" >KRISHNA </span>
                 <span id="l2">FINANCE</span></span></h1>
                 {/* <button className="submitButton" onClick={registerAdmin}>Reigster Admin</button> */}
             <div className="form">

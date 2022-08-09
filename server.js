@@ -30,9 +30,9 @@ app.post('/api/register', async (req, res) => {
 			email: req.body.email,
 			password: newPassword,
 		});
-		res.json({ status: 'ok', created : 'Collection' });
+		return res.json({ status: 'ok', created : 'Collection' });
 	} catch (err) {
-		res.json({ status: 'error', error: 'Collection not created' })
+		return res.json({ status: 'error', error: 'Collection not created' })
 	}
 });
 
@@ -56,7 +56,7 @@ app.post("/api/addRecord",async (req,res)=>{
             const {customerName,loanID,amount} = req.body;
             let flag = 0;
             if(!customerName || !loanID || !amount)
-                res.json({status : "noInput"})
+                return res.json({status : "noInput"})
             else{
                 const checkExists = await Loan.findOne({
                     customerName : req.body.customerName,
@@ -68,7 +68,7 @@ app.post("/api/addRecord",async (req,res)=>{
                     flag = 2;
             }
             if(flag === 1){
-                res.json({status : "alreadyExists"});
+                return res.json({status : "alreadyExists"});
             }
             if(flag === 2){
                 await Loan.create({
@@ -79,20 +79,19 @@ app.post("/api/addRecord",async (req,res)=>{
                     paidStatus : "Not Paid",
                     verifyStatus : "Not Verified",
                  });
-                 res.json({status : "ok"});
+                 return res.json({status : "ok"});
             }
         }
         catch(err){
-            res.json({status : "error" , error : "record not added"})
+            return res.json({status : "error" , error : "record not added"})
         }
 
 });
 app.post("/api/updateRecord",async (req,res)=>{
     try{
-        const {customerName,loanID,billNumber} = req.body;
-        let flag = 0;
-        if(!customerName || !loanID || !billNumber){
-            res.json({status : "noInput"});
+        const {customerName,loanID,billNumber,amount} = req.body;
+        if(!customerName || !loanID || !billNumber || !amount){
+            return res.json({status : "noInput"});
         }
         else{
             const find = await Loan.findOne({
@@ -105,59 +104,40 @@ app.post("/api/updateRecord",async (req,res)=>{
                     billNumber : req.body.billNumber,
                 })
                 if(findBillNumber){
-                    const checkUpdated = await Loan.findOne({
-                        loanID : req.body.loanID,
-                        billNumber : req.body.billNumber
-                    })
+                    return res.json({status : "invalidBillNumber"});
+                }
+                else{
+                    const checkUpdated = await Loan.findOne({loanID : req.body.loanID, customerName : req.body.customerName, amount : req.body.amount, paidStatus : "Paid"})
                     if(checkUpdated)
-                        flag = 4;
-                    else
-                        flag = 3;
+                        return res.json({status : "alreadyUpdated"})
+                    else{
+                        await Loan.updateOne({
+                            customerName : req.body.customerName,
+                            loanID : req.body.loanID,
+                        }
+                        ,{
+                            $set : {billNumber : req.body.billNumber,paidStatus : "Paid"}
+                        }
+                        )
+                        return res.json({status : "ok"});
+                    }
                 }
-                else
-                    flag = 1;
+
             }
-            else
-                flag = 2;
-        }
-        if(flag === 1){
-            const billNumberExist = await Loan.find({billNumber : {$exists : true}})
-            if(billNumberExist)
-                flag = 4;
             else{
-                await Loan.updateOne({
-                    customerName : req.body.customerName,
-                    loanID : req.body.loanID,
-                }
-                ,{
-                    $set : {billNumber : req.body.billNumber,paidStatus : "Paid"}
-                }
-                )
-                res.json({status : "ok"});
+                return res.json({status : "noRecord"});
             }
-        }
-        if(flag === 2){
-            res.json({status : "noRecord"});
-        }
-        if(flag === 3){
-            res.json({status : "invalidBillNumber"});
-        }
-        if(flag === 4){
-            res.json({status : "alreadyUpdated"});
         }
     }
     catch(err){
-        res.json({status : "error",error : "record not updated"})
+        return res.json({status : "error",error : "record not updated"})
     }
 });
 app.post("/api/verifyRecord",async (req,res)=>{
     try{
-        let flag = 0;
         const {customerName,loanID,billNumber} = req.body;
         if(!customerName || !loanID || !billNumber )
-            flag = 1;
-        if(flag === 1)
-            res.json({status : "noInput"});
+            return res.json({status : "noInput"});  
         else{
             const checkExists = await Loan.findOne({
                 customerName : req.body.customerName,
@@ -167,7 +147,7 @@ app.post("/api/verifyRecord",async (req,res)=>{
             if(checkExists){
                 const checkVerified = await Loan.findOne({customerName : req.body.customerName,loanID : req.body.loanID,verifyStatus : "Verified"});
                 if(checkVerified)
-                    flag = 3;
+                    return res.json({status : "alreadyVerified"});
                 else{
                     await Loan.updateOne({
                         customerName : req.body.customerName,
@@ -177,23 +157,16 @@ app.post("/api/verifyRecord",async (req,res)=>{
                     {
                         $set : {verifyStatus : "Verified"}
                     })
-                    res.json({status : "ok"});
+                    return res.json({status : "ok"});
                 }
             }
             else{
-                flag = 2;
+                return res.json({status : "noRecord"})
             }
-        }
-        if(flag === 2)
-            res.json({status : "noRecord"})
-        if(flag === 3)
-        {
-            res.json({status : "alreadyVerified"});
-        }
-           
+        }   
     }
     catch(err){
-        res.json({status : "not-ok", error : "record not verified"})
+       return res.json({status : "not-ok", error : "record not verified"})
     }
 });
 
@@ -201,7 +174,7 @@ app.post("/api/deleteRecord",async (req,res)=>{
     try{
         const {customerName, loanID,billNumber} = req.body;
         if(!customerName || !loanID || !billNumber)
-            res.json({status : "noInput"})
+            return res.json({status : "noInput"})
         else{
             const checkExists = await Loan.findOne({
                 customerName : req.body.customerName,
@@ -214,29 +187,41 @@ app.post("/api/deleteRecord",async (req,res)=>{
                     customerName : req.body.customerName,
                     loanID : req.body.loanID,
                 })
-                res.json({status : "ok"});
+                return res.json({status : "ok"});
             }
             else{
-                res.json({status : "noRecord"})
+                return res.json({status : "noRecord"})
             }
         }
         
     }
     catch(err){
-        res.json({status : "error", error : "record not deleted"});
+        return res.json({status : "error", error : "record not deleted"});
     }
 })
 
 app.post("/api/checkStatus",async (req,res)=>{
     try{
-        await Loan.find({
-                customerName : req.body.customerName,
+        const {loanID,billNumber } = req.body;
+        if(!loanID || !billNumber)
+            return res.json({status : "noInput"});
+
+        const checkExists = await Loan.findOne({
                 loanID : req.body.loanID,
+                billNumber : req.body.billNumber,
         },)   
-        res.json({status : "ok"});
+        if(!checkExists)
+            return res.json({status : "noRecord"})
+        else{
+            const checkStatus = await Loan.findOne({loanID : req.body.loanID,billNumber : req.body.billNumber,verifyStatus : "Verified"});
+            if(checkStatus)
+                return res.json({status : "ok"})
+            else    
+                return res.json({status : "notVerified"})
+        }
     }   
     catch(err){
-        res.json({status : "error", error :"error"})
+        return res.json({status : "error", error :"error"});
     }
 
 })
@@ -251,9 +236,9 @@ app.post("/api/fetchData",async (req,res)=>{
         console.log("data");
         console.log(displayData);
         console.log("Fetched");
-        res.json({status : "ok"});
+        return res.json({status : "ok"});
     }catch(error){
-        res.json({status : "error", error : "record not fetched"})
+        return res.json({status : "error", error : "record not fetched"})
     }
 })
 
@@ -319,7 +304,7 @@ app.get("/send-sms",(req,res)=>{
         from : "+16199433607",
         body : "Kindly pay the loan due",
     })
-    res.send("SMS sent");
+    return res.send("SMS sent");
 })
 
 app.listen(3001,()=>{

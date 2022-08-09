@@ -95,7 +95,7 @@ function Login(){
     return(
         <div className="Login">
             <div className="formContainer">
-            <h1 className="header" id="loginTitle">CUSTOMER LOGIN <span><span id="l1" >KRISHNA </span>
+            <h1 className="header" id="loginTitle">CUSTOMER LOGIN <span><br/><span id="l1" >KRISHNA </span>
                 <span id="l2">FINANCE</span></span></h1>
             <div className="form">
             <br />

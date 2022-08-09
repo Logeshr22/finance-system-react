@@ -104,7 +104,7 @@ function Register(){
         <div className="Register">
                 <div className="formContainer">
                 <h1 className="header" id="loginTitle">REGISTER 
-                    <span><span id="l1" >KRISHNA </span>
+                    <span><br/><span id="l1" >KRISHNA </span>
                 <span id="l2">FINANCE</span></span> </h1>
                 <div className="form">
                     <br />

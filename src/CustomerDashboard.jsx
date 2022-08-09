@@ -3,11 +3,9 @@ import {useState} from "react";
 import "./Login.css"
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
-import { render } from "react-dom";
 import TextField from "@material-ui/core/TextField";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import { Box } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
 const CustomerDashboard = (props)=>{
@@ -101,33 +99,34 @@ const CustomerDashboard = (props)=>{
             toast.error("Record already updated")
     }
 
-    // async function checkStatus(event){
-    //     event.preventDefault();
-    //     const response = await fetch("http://localhost:3001/api/checkStatus",{
-    //         method:'POST',
-    //         headers:{
-    //             'Content-Type' : 'application/json',
-    //         },
-    //         body : JSON.stringify({
-    //             customerName,
-    //             billNumber,
-    //             loanID,
-    //             amount, 
-    //         }),
-    //     })
-    //     const data = await response.json();
-    //     console.log(data);
-    //     if(data.status==="ok"){
-    //         console.log("verified");
-    //         toast.success("Your record was verified")
-    //     }
-    //     else if(data.status==="not-ok"){
-    //         console.log("not verified")
-    //         toast.error("Your record is not verified");
-    //     }else{
-    //         toast.error("Please fill the details");
-    //     }
-    // }
+    async function checkStatus(event){
+        event.preventDefault();
+        const response = await fetch("http://localhost:3001/api/checkStatus",{
+            method:'POST',
+            headers:{
+                'Content-Type' : 'application/json',
+            },
+            body : JSON.stringify({
+                customerName,
+                billNumber,
+                loanID,
+                amount, 
+            }),
+        })
+        const data = await response.json();
+        console.log(data);
+        if(data.status==="noInput"){
+            toast.error("Please fill the details");
+        }
+        else if(data.status==="noRecord"){
+            toast.error("No such record");
+        }
+        else if(data.status === "ok"){
+            toast.success("Your record is Verified");
+        }
+        else if(data.status === "notVerified")
+            toast.error("Your record is not Verified");
+    }
 
     const navigate = useNavigate();
     const handleLogoutButton = () =>{
@@ -146,7 +145,7 @@ const CustomerDashboard = (props)=>{
             <div className="display">
 
                 <div className="LoanDetails">
-                <h1 className="header" id="loginTitle">PAYMENT DETAILS</h1>
+                <h1 className="header" id="loginTitle"><span>PAYMENT</span><span>DETAILS</span></h1>
                 <div className="formBox">
                 <form id="formBox" onSubmit={updateRecord}>
                     <input type="text" id="customerName"
@@ -166,14 +165,9 @@ const CustomerDashboard = (props)=>{
                 </form> 
                 </div>
                 </div>
-                <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "40vh",
-        }}
-      >
+
+
+    <div style={{display: "flex",alignItems: "center",justifyContent: "center",height: "40vh",}}>
         <form className="material-form">
         <h1 id="interestCalculatorHeader">INTEREST CALCULATOR</h1>
         <Grid container direction={"column"} spacing={2}>        
@@ -233,30 +227,23 @@ const CustomerDashboard = (props)=>{
             </Grid>
         </form>
       </div>
+      <div className="LoanDetails">
+            <h1 className="header" id="loginTitle"><span>CHECK</span><span>STATUS</span></h1>
+            <div className="formBox">
+            <form id="formBox" onSubmit={checkStatus}>
+                <input type="text" id="loanID"
+                onChange={handleLoanID}  name="loanID" placeholder="Loan ID" className="inputField" autoComplete="off" />
 
-                {/* <div className="LoanDetails">
-                <h1 className="header" id="loginTitle">CHECK STATUS</h1>
-                <div className="formBox">
-                <form id="formBox" onSubmit={checkStatus}>
-                    <input type="text" id="customerName"
-                    onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
-
-                    <input type="text" id="loanID"
-                    onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
-
-
-                    <button  className="submitButton" >Check Status</button>
-                </form> 
-                </div>
-                </div> */}
+                <input type="text" id="billNumber"
+                onChange={handleBillNumber}  name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off" />
 
 
+                <button  className="submitButton" >Check Status</button>
+            </form> 
             </div>
-            <div>
             </div>
-           
-            
-        </div>
+    </div>       
+    </div>
     )
 }
 
