@@ -1,10 +1,11 @@
 import React from "react";
-import {useState} from "react";
+import axios from "axios";
+import {useState,useEffect} from "react";
 import "./Login.css"
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import {createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
@@ -14,6 +15,15 @@ const CustomerDashboard = (props)=>{
     const [years, setYears] = useState();
     const [interest, setInterest] = useState();
     const [result, setResult] = useState();
+
+    //image upload
+    const [file,setFile] = useState(null);
+
+
+
+    const onInputChange = (e)=>{
+        setFile(e.target.files[0]);
+    }
     
     const calculate = () => {
         // A=p(1+(r/n))^(nt)
@@ -68,7 +78,24 @@ const CustomerDashboard = (props)=>{
     }
     async function updateRecord(event){
         event.preventDefault();
-        const response = await fetch("http://localhost:3001/api/updateRecord",{
+        let flag = 0;
+        // const formData = new FormData();
+        // formData.append("photo",file);
+        // const config = {
+        //     headers : {
+        //         "content-type" : "multipart/form-data",
+        //     }
+        // };
+        // const url = "http://localhost:3001/user/upload";
+        // axios.post(url,formData,config).then((res)=>{
+        //     toast.success("Image uploaded Successfully");
+        // }).catch((err)=>{
+        //     console.log("error",err);
+        //     toast.error("Error image uploading ");
+        //     flag = 1;
+        // })
+        if(flag === 0){
+            const response = await fetch("http://localhost:3001/api/updateRecord",{
             method:'POST',
             headers:{
                 'Content-Type' : 'application/json',
@@ -79,24 +106,26 @@ const CustomerDashboard = (props)=>{
                 loanID,
                 amount,
             }),
-        })
-        const data = await response.json();
-        console.log(data);
-        if(data.status==="ok"){
-            console.log("updated");
-            toast.success("Record Updated successfully")
+            })
+            const data = await response.json();
+            console.log(data);
+            if(data.status==="ok"){
+                console.log("updated");
+                toast.success("Record Updated successfully")
+            }
+            else if(data.status === "noInput"){
+                toast.error("Please fill the details");
+            }
+            else if(data.status === "noRecord"){
+                toast.error("No such Record")
+            }
+            else if(data.status === "invalidBillNumber"){
+                toast.error("Bill Number is invalid")
+            }
+            else if(data.status === "alreadyUpdated")
+                toast.error("Record already updated")
+
         }
-        else if(data.status === "noInput"){
-            toast.error("Please fill the details");
-        }
-        else if(data.status === "noRecord"){
-            toast.error("No such Record")
-        }
-        else if(data.status === "invalidBillNumber"){
-            toast.error("Bill Number is invalid")
-        }
-        else if(data.status === "alreadyUpdated")
-            toast.error("Record already updated")
     }
 
     async function checkStatus(event){
@@ -122,10 +151,10 @@ const CustomerDashboard = (props)=>{
             toast.error("No such record");
         }
         else if(data.status === "ok"){
-            toast.success("Your record is Verified");
+            toast.success("Your record is Verified by our Finance");
         }
         else if(data.status === "notVerified")
-            toast.error("Your record is not Verified");
+            toast.error("Your record is not Verified by our Finance");
     }
 
     const navigate = useNavigate();
@@ -144,90 +173,96 @@ const CustomerDashboard = (props)=>{
             </div>
             <div className="display">
 
-                <div className="LoanDetails">
-                <h1 className="header" id="loginTitle"><span>PAYMENT</span><span>DETAILS</span></h1>
-                <div className="formBox">
-                <form id="formBox" onSubmit={updateRecord}>
-                    <input type="text" id="customerName"
-                    onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="billNumber"
-                    onChange={handleBillNumber}  name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off" />
+            {/* Update */}
+            <div className="LoanDetails">
+            <h1 className="header" id="loginTitle"><span>PAYMENT</span><span>DETAILS</span></h1>
+            <div className="formBox">
+            <form id="formBox" onSubmit={updateRecord}>
+                <input type="text" id="customerName"
+                onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="loanID"
-                    onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
+                <input type="text" id="billNumber"
+                onChange={handleBillNumber}  name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="amount"
-                    onChange={handleAmount} name="amount" placeholder="Amount" className="inputField" autoComplete="off"/>
+                <input type="text" id="loanID"
+                onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                    <button  className="submitButton">Update</button>
-                    
-                </form> 
-                </div>
-                </div>
+                <input type="text" id="amount"
+                onChange={handleAmount} name="amount" placeholder="Amount" className="inputField" autoComplete="off"/>
 
+                {/* <span id="proof">
+                <label for="proof" name="proof"></label>
+                <input type="file" onChange = {onInputChange} className="fileUploadButton" name="proof" />
+                </span> */}
 
-    <div style={{display: "flex",alignItems: "center",justifyContent: "center",height: "40vh",}}>
-        <form className="material-form">
-        <h1 id="interestCalculatorHeader">INTEREST CALCULATOR</h1>
-        <Grid container direction={"column"} spacing={2}>        
-            <Grid item>
-                <ThemeProvider theme = {InputTheme}>
-                <TextField
-                label="What is the principal?"
-                variant="outlined"
-                type="number"
-                style={{width : 230}}
-                onChange={(e) => setPrincipal(e.target.value)}
-                />
-                </ThemeProvider>
-            </Grid>          
-            <Grid item>
-                <ThemeProvider theme = {InputTheme}>
-                <TextField
-                label="How many years?"
-                variant="outlined"
-                type="number"
-                style={{width : 230}}
-                onChange={(e) => setYears(e.target.value)}
-                />
-                </ThemeProvider>
-            </Grid>  
-            <Grid item>
-                <ThemeProvider theme = {InputTheme}>
-                <TextField
-                label="Annual Interest rate?"
-                variant="outlined"
-                type="number"
-                style={{width : 230}}
-                onChange={(e) => setInterest(e.target.value / 100)}
-                />
-                </ThemeProvider>
-            </Grid>
-            <br />
-            <br />
-            <div>
-            <ThemeProvider theme = {ButtonTheme}>
-            <Button
-                variant="contained"
-                color="primary"
-                font="Montserrat"
-                style={{borderRadius : 8, padding : 10, paddingRight:14,paddingLeft : 14,fontWeight : 700,}}
-                onClick={() => {
-                    calculate();
-                }}
-                >
-                Calculate
-            </Button>
-            </ThemeProvider>
+                <button  className="submitButton">Update</button>
+                
+            </form> 
             </div>
-            <br />
-            <br />
-            <div className="resultValue" style={{ fontSize: "30px" , color : "black"}}>₹{result}</div>
-            </Grid>
-        </form>
-      </div>
-      <div className="LoanDetails">
+            </div>
+
+            {/* interestCalculator */}
+            <div style={{display: "flex",alignItems: "center",justifyContent: "center",height: "40vh",}}>
+                <form className="material-form">
+                <h1 id="interestCalculatorHeader">INTEREST CALCULATOR</h1>
+                <Grid container direction={"column"} spacing={2}>        
+                    <Grid item>
+                        <ThemeProvider theme = {InputTheme}>
+                        <TextField
+                        label="What is the principal?"
+                        variant="outlined"
+                        type="number"
+                        style={{width : 230}}
+                        onChange={(e) => setPrincipal(e.target.value)}
+                        />
+                        </ThemeProvider>
+                    </Grid>          
+                    <Grid item>
+                        <ThemeProvider theme = {InputTheme}>
+                        <TextField
+                        label="How many years?"
+                        variant="outlined"
+                        type="number"
+                        style={{width : 230}}
+                        onChange={(e) => setYears(e.target.value)}
+                        />
+                        </ThemeProvider>
+                    </Grid>  
+                    <Grid item>
+                        <ThemeProvider theme = {InputTheme}>
+                        <TextField
+                        label="Annual Interest rate?"
+                        variant="outlined"
+                        type="number"
+                        style={{width : 230}}
+                        onChange={(e) => setInterest(e.target.value / 100)}
+                        />
+                        </ThemeProvider>
+                    </Grid>
+                    <div>
+                    <div className="resultValue" style={{ fontSize: "20px" , color : "black",fontFamily : "Montserrat"}}>₹{result}</div>
+                    <ThemeProvider theme = {ButtonTheme}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        font="Montserrat"
+                        style={{borderRadius : 8, padding : 10, paddingRight:14,paddingLeft : 14,fontWeight : 700,}}
+                        onClick={() => {
+                            calculate();
+                        }}
+                        >
+                        Calculate
+                    </Button>
+                    </ThemeProvider>
+                    </div>
+                    </Grid>
+                    <br/>
+                </form>
+            </div>
+
+            {/* checkStatus */}
+            <div className="LoanDetails">
             <h1 className="header" id="loginTitle"><span>CHECK</span><span>STATUS</span></h1>
             <div className="formBox">
             <form id="formBox" onSubmit={checkStatus}>

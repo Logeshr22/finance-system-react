@@ -47,7 +47,6 @@ function Login(){
 
 
     // Authentication
-
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -72,12 +71,14 @@ function Login(){
         console.log(response);
         const data = await response.json();
         try{
-            if(data.user){
+            if(data.status==="noInput")
+                toast.error("Please fill the details");
+            else if(data.user){
                 localStorage.setItem("token",data.user);
                 window.location.href = "./CustomerDashboard"; 
-            }else{
+            }else if(data.user===false){
                 console.log("Invalid Credentials");
-                toast.error("Login failed");
+                alert("Invalid Credentials");
             }
         }
         catch(e){

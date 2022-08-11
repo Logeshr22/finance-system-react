@@ -150,7 +150,7 @@ const AdministratorDashboard = (props)=>{
                     <input type="text" id="amount"
                     onChange={handleAmount} name="amount" placeholder="Total Amount" className="inputField" autoComplete="off"/>
 
-                    <button  className="submitButton" >Add Loan Record</button>
+                    <button  className="submitButton" >Add Record</button>
                 </form> 
                 </div>
                 </div>
@@ -186,7 +186,7 @@ const AdministratorDashboard = (props)=>{
                     <input type="text" id="billNumber" onChange={handleBillNumber}
                      name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off"/>
 
-                    <button  className="submitButton" >Delete Loan Record</button>
+                    <button  className="submitButton" >Delete Record</button>
                 </form> 
                 </div>
                 </div>

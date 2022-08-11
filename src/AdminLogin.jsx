@@ -72,11 +72,14 @@ function AdminLogin(){
         console.log(response);
         const data = await response.json();
         try{
-            if(data.admin){
+            if(data.status==="noInput")
+                toast.error("Please fill the details");
+            else if(data.admin){
                 localStorage.setItem("token",data.admin);
                 window.location.href = "./AdministratorDashboard"; 
             }else{
                 console.log("Invalid Credentials");
+                alert("Invalid Credentials");
             }
         }
         catch(e){

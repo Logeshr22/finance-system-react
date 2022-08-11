@@ -36,6 +36,8 @@ app.post('/api/register', async (req, res) => {
 	}
 });
 
+
+
 // const registerAdmin = async (req,res)=>{
 //     try{
 //         const newPassword = await bcrypt.hash("Logesh123",10);
@@ -243,56 +245,66 @@ app.post("/api/fetchData",async (req,res)=>{
 })
 
 app.post("/api/login", async (req,res)=>{
-    const user = await User.findOne({
-        email : req.body.email,
-    });
-
-    if(!user){return {status : "error", error : "Invalid login"}}
-
-    const isPasswordValid = await bcrypt.compare(
-        req.body.password,
-        user.password
-    );
-    
-    if(isPasswordValid){
-        const token = jwt.sign(
-        {
-            name : user.name,
-            email : user.email,
-        },
-        "secret123",
-    )
-        return res.json({status : "ok",user : token})
-    }
+    const {email,password} = req.body;
+    if(!email || !password)
+        return res.json({status : "noInput"});
     else{
-        return res.json({status : "ok", user : false})
-    }
+        const user = await User.findOne({
+            email : req.body.email,
+        });
+
+        if(!user){return {status : "error", error : "Invalid login"}}
+
+        const isPasswordValid = await bcrypt.compare(
+            req.body.password,
+            user.password
+        );
+        
+        if(isPasswordValid){
+            const token = jwt.sign(
+            {
+                name : user.name,
+                email : user.email,
+            },
+            "secret123",
+        )
+            return res.json({status : "ok",user : token})
+        }
+        else{
+            return res.json({status : "ok", user : false})
+        }
+}
 })
 
 app.post("/api/adminLogin", async (req,res)=>{
-    const admin = await Admin.findOne({
-        email : req.body.email,
-    });
-
-    if(!admin){return {status : "error", error : "Invalid login"}}
-
-    const isPasswordValid = await bcrypt.compare(
-        req.body.password,
-        admin.password
-    );
-    
-    if(isPasswordValid){
-        const token = jwt.sign(
-        {
-            email : admin.email,
-        },
-        "secret123",
-    )
-        return res.json({status : "ok",admin : token})
-    }
+    const {email,password} = req.body;
+    if(!email || !password)
+        return res.json({status : "noInput"});
     else{
-        return res.json({status : "ok", admin : false})
-    }
+        const admin = await Admin.findOne({
+            email : req.body.email,
+        });
+
+        if(!admin){return {status : "error", error : "Invalid login"}}
+
+        const isPasswordValid = await bcrypt.compare(
+            req.body.password,
+            admin.password
+        );
+        
+        if(isPasswordValid){
+            const token = jwt.sign(
+            {
+                email : admin.email,
+            },
+            "secret123",
+        )
+            return res.json({status : "ok",admin : token})
+        }
+        else{
+            return res.json({status : "ok", admin : false})
+        }
+}
 })
 //twilio send sms
 const accountId = "AC68579d53b68ab4fe5922dcfefc2a4a44";
