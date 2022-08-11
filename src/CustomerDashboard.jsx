@@ -17,13 +17,13 @@ const CustomerDashboard = (props)=>{
     const [result, setResult] = useState();
 
     //image upload
-    const [file,setFile] = useState(null);
+    // const [file,setFile] = useState(null);
 
 
 
-    const onInputChange = (e)=>{
-        setFile(e.target.files[0]);
-    }
+    // const onInputChange = (e)=>{
+    //     setFile(e.target.files[0]);
+    // }
     
     const calculate = () => {
         // A=p(1+(r/n))^(nt)
@@ -182,13 +182,13 @@ const CustomerDashboard = (props)=>{
                 <input type="text" id="customerName"
                 onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                <input type="text" id="billNumber"
+                <input type="number" id="billNumber"
                 onChange={handleBillNumber}  name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off" />
 
-                <input type="text" id="loanID"
+                <input type="number" id="loanID"
                 onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                <input type="text" id="amount"
+                <input type="number" id="amount"
                 onChange={handleAmount} name="amount" placeholder="Amount" className="inputField" autoComplete="off"/>
 
                 {/* <span id="proof">
@@ -266,10 +266,10 @@ const CustomerDashboard = (props)=>{
             <h1 className="header" id="loginTitle"><span>CHECK</span><span>STATUS</span></h1>
             <div className="formBox">
             <form id="formBox" onSubmit={checkStatus}>
-                <input type="text" id="loanID"
+                <input type="number" id="loanID"
                 onChange={handleLoanID}  name="loanID" placeholder="Loan ID" className="inputField" autoComplete="off" />
 
-                <input type="text" id="billNumber"
+                <input type="number" id="billNumber"
                 onChange={handleBillNumber}  name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off" />
 
 

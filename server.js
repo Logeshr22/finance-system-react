@@ -56,32 +56,26 @@ app.post("/api/addRecord",async (req,res)=>{
 
         try{
             const {customerName,loanID,amount} = req.body;
-            let flag = 0;
             if(!customerName || !loanID || !amount)
                 return res.json({status : "noInput"})
             else{
                 const checkExists = await Loan.findOne({
-                    customerName : req.body.customerName,
                     loanID : req.body.loanID,
                 })
                 if(checkExists)
-                    flag = 1;
-                else
-                    flag = 2;
-            }
-            if(flag === 1){
-                return res.json({status : "alreadyExists"});
-            }
-            if(flag === 2){
-                await Loan.create({
-                    customerName : req.body.customerName,
-                    loanID : req.body.loanID,
-                    amount : req.body.amount,
-                    billNumber : "-",
-                    paidStatus : "Not Paid",
-                    verifyStatus : "Not Verified",
-                 });
-                 return res.json({status : "ok"});
+                    return res.json({status : "alreadyExists"});
+                else{
+                    await Loan.create({
+                        customerName : req.body.customerName,
+                        loanID : req.body.loanID,
+                        amount : req.body.amount,
+                        billNumber : "-",
+                        paidStatus : "Not Paid",
+                        verifyStatus : "Not Verified",
+                    });
+                    return res.json({status : "ok"});
+                }
+                
             }
         }
         catch(err){

@@ -62,8 +62,8 @@ const AdministratorDashboard = (props)=>{
         else if(data.status === "ok"){
             toast.success("Record Added")
         }
-        else{
-            toast.error("Invalid ID");
+        else {
+            toast.error("ID should be maximum 3 characters");
         }
     }
     //verify record
@@ -144,10 +144,10 @@ const AdministratorDashboard = (props)=>{
                     <input type="text" id="customerName"
                     onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="loanID"
+                    <input type="number" id="loanID"
                     onChange={handleLoanID}  name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="amount"
+                    <input type="number" id="amount"
                     onChange={handleAmount} name="amount" placeholder="Total Amount" className="inputField" autoComplete="off"/>
 
                     <button  className="submitButton" >Add Record</button>
@@ -162,10 +162,10 @@ const AdministratorDashboard = (props)=>{
                     <input type="text" id="customerName"
                     onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="loanID" onChange={handleLoanID}
+                    <input type="number" id="loanID" onChange={handleLoanID}
                      name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="billNumber" onChange={handleBillNumber}
+                    <input type="number" id="billNumber" onChange={handleBillNumber}
                      name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off"/>
 
                     <button  className="submitButton">Verify Record</button>
@@ -180,10 +180,10 @@ const AdministratorDashboard = (props)=>{
                     <input type="text" id="customerName"
                     onChange={handleCustomerName}  name="customerName" placeholder="Customer Name" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="loanID" onChange={handleLoanID}
+                    <input type="number" id="loanID" onChange={handleLoanID}
                      name="loanID" placeholder="LoanID" className="inputField" autoComplete="off" />
 
-                    <input type="text" id="billNumber" onChange={handleBillNumber}
+                    <input type="number" id="billNumber" onChange={handleBillNumber}
                      name="billNumber" placeholder="Bill Number" className="inputField" autoComplete="off"/>
 
                     <button  className="submitButton" >Delete Record</button>
